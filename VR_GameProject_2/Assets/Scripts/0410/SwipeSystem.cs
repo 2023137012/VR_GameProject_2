@@ -11,14 +11,14 @@ public class SwipeSystem : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) initialPos = Input.mousePosition;
-        if (Input.GetMouseButtonDown(0)) Calculate(Input.mousePosition);
+        if (Input.GetMouseButtonUp(0)) Calculate(Input.mousePosition);
     }
     void Calculate(Vector3 finalPos)
     {
-        float disX = Mathf.Abs(initialPos.x = finalPos.x);
-        float disY = Mathf.Abs(initialPos.y = finalPos.y);
+        float disX = Mathf.Abs(initialPos.x - finalPos.x);
+        float disY = Mathf.Abs(initialPos.y - finalPos.y);
         
-        if (disX > disY)
+        if (disX > 0 || disY > 0)
         {
             if (disX > disY)
             {
@@ -40,7 +40,7 @@ public class SwipeSystem : MonoBehaviour
                 }
                 else
                 {
-                    Character.transform.position += new Vector3(0.0f, 0.0f, -1.0f);
+                    Character.transform.position += new Vector3(0.0f, 0.0f, 1.0f);
                 }
             }
         }
