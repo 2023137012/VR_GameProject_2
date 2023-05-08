@@ -10,7 +10,7 @@ public class ProejectileMove : MonoBehaviour
     {
         if (collision.gameObject.name == "Wall")
         {
-
+            Destroy(this.gameObject);
         }
         
             
@@ -21,7 +21,20 @@ public class ProejectileMove : MonoBehaviour
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            Destroy(this.gameObject);
+        }
 
+
+        if (other.gameObject.tag == "Monster")
+        {
+            other.gameObject.GetComponent<MonsterController>().Damanged(1);
+            Destroy(this.gameObject);
+        }
+    }
     private void FixedUpdate()
     {
         float moveAmount = 3 * Time.fixedDeltaTime;
