@@ -10,7 +10,16 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity;
     public ProjectileController projectileController;
 
+    public int Player_Hp = 50;
+    public void Damanged(int Damage)
+    {
+        Player_Hp -= Damage;
 
+        if (Player_Hp < 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     void Start()
     {
         viewCamera = Camera.main;
